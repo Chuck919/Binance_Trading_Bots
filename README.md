@@ -17,7 +17,9 @@ Make sure to enable trading and it is also recommended to restrict your IP for s
 The following is also a very helpful resource: [Binance Python API A Step-By-Step Guide](https://algotrading101.com/learn/binance-python-api-guide/)
 
 ### Inputs
-Open the [Contribution guidelines for this project](Binance_Trading_Bots/)
+Open the [variables](Binance_Trading_Bots/'Crypto Trading Bot'/variables.txt)
+
+file and input the information it asks.
 Coin Pair: ETHUSD
 Price Scale(%): 0.5
 Rebounce(%): 0.2
