@@ -1,8 +1,8 @@
-Coin Pair: ETHUSD
-Price Scale(%): 0.4
-Rebounce(%): 0.2
-Take Profit(%): 0.3
-Trailing(%): 0.1
-Stable Coin Amount to Use: 100
-Volume Scale: 1.1
-Orders: 7
+Coin Pair: 
+Price Scale(%): 
+Rebounce(%): 
+Take Profit(%): 
+Trailing(%): 
+Stable Coin Amount to Use: 
+Volume Scale: 
+Orders: 
