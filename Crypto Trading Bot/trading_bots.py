@@ -46,19 +46,21 @@ def martingale_bot(client):
     sell_price = 999999
 
     #checks if the code crashed or reset and updates buy amount
-    with open("buy_orders.txt","r") as buy_orders:
-        prices_before = linecache.getline('buy_orders.txt', 1).strip()
-        price_bought = prices_before.split()
-        for i in range(len(price_bought)):
-            price_bought[i] = float(price_bought[i])
-        amount_before = linecache.getline('buy_orders.txt', 2).strip()
-        amount_bought = amount_before.split()
-        for i in range(len(amount_bought)):
-            amount_bought[i] = float(amount_bought[i])
-        try:
+    try:
+        with open("buy_orders.txt","r") as buy_orders:
+            prices_before = linecache.getline('buy_orders.txt', 1).strip()
+            price_bought = prices_before.split()
+            for i in range(len(price_bought)):
+                price_bought[i] = float(price_bought[i])
+            amount_before = linecache.getline('buy_orders.txt', 2).strip()
+            amount_bought = amount_before.split()
+            for i in range(len(amount_bought)):
+                amount_bought[i] = float(amount_bought[i])
             bought = int(linecache.getline('buy_orders.txt', 3).strip())
-        except:
-            bought = 0
+    except:
+        price_bought = []
+        amount_bought = []
+        bought = 0
 
     while True:
         #checks recent price
