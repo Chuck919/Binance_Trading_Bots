@@ -189,3 +189,4 @@ def martingale_bot(client):
         else:
             time.sleep(0.5)
             continue
+#simple implementation
