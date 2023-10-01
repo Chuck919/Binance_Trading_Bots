@@ -1,5 +1,0 @@
-*API goes here*
-*API Secret Code goes here*
-
-haha nice try
-I'm not putting my actual API in this doc

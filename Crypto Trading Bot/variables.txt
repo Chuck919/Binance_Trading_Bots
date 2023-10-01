@@ -1,8 +1,0 @@
-Coin Pair: 
-Price Scale(%): 
-Rebounce(%): 
-Take Profit(%): 
-Trailing(%): 
-Stable Coin Amount to Use: 
-Volume Scale: 
-Orders: 
