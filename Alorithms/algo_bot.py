@@ -28,8 +28,11 @@ with sqlite3.connect('trading_data.db') as conn:
         )
     ''')
     
-interval = Client.KLINE_INTERVAL_1MINUTE  # 1-minute interval
+interval = Client.KLINE_INTERVAL_1DAY  # 1-day interval
 limit = 1000
+
+check = Check()
+algos = Algorithms()
 
 class AlgoBot:
     def __init__(self, variables):
@@ -43,7 +46,6 @@ class AlgoBot:
         self.amount = None
         self.transactions = 0
         self.profit = 0
-        self.check 
 
         self.crash_check()
 
@@ -116,13 +118,13 @@ class AlgoBot:
         interval = Client.KLINE_INTERVAL_1MINUTE
         limit = 1000
 
-        klines = client.get_historical_klines(symbol, interval, limit=limit)
+        klines = client.get_historical_klines(self.symbol, interval, limit=limit)
 
         if self.heikin == 'y' or self.heikin == 'Y':
             klines = algos.heikin_ashi(klines)
 
         closing_prices = [float(kline[4]) for kline in klines]
-        print(closing_prices[-1])
+        #print(closing_prices[-1])
 
         if 'macd' in self.checks:
             params = self.checks.get('macd')
@@ -169,13 +171,13 @@ class AlgoBot:
             #print(f'vwap: {algos.vwap(klines)}')
             self.signals['vwap'] = signal
 
-        print(self.signals)
+        #print(self.signals)
 
         unique_values = set(self.signals.values())
         if len(unique_values) == 1 and 'BUY' in unique_values and self.bought == None:
             self.buy_order(new_price)
 
-        elif len(unique_values) == 1 and 'SELL' in unique_values and self.bought == None:
+        elif len(unique_values) == 1 and 'SELL' in unique_values and self.bought != None:
             self.sell_order(new_price)
 
         else:
@@ -185,12 +187,14 @@ class AlgoBot:
     def buy_order(self, new_price):
         buy_order = client.order_market_buy(symbol=self.symbol, quantity=float(Decimal(self.use / new_price).quantize(Decimal('0.0001'), rounding=ROUND_DOWN)))
 
-        order_details = self.recent_order('BUY')
+        #order_details = self.recent_order('BUY')
 
-        self.amount = order_details[0] # * (1 -  buying fee)
-        self.bought = order_details[1]
+        self.amount = float(Decimal(self.use / new_price).quantize(Decimal('0.0001'), rounding=ROUND_DOWN))# * (1 -  buying fee)
+        self.bought = new_price
 
         self.increment_buy_orders()
+
+        print(f'{self.key} bought at {self.bought}')
 
     def sell_order(self, new_price):
         sell_order = client.order_market_sell(symbol = self.symbol, quantity = self.amount)
@@ -204,6 +208,7 @@ class AlgoBot:
 
         self.delete_buy_orders()
 
+        print(f'{self.key} sold at {new_price}')
 
     def price_check(self, tickers):
         for ticker in tickers:

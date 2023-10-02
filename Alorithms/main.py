@@ -177,10 +177,10 @@ class Check:
             return None
 
         if self.roc_prev < 0 and current_roc > 0:
-            print(f'\n\nROC BUY: {current_roc}\n\n')
+            #print(f'\n\nROC BUY: {current_roc}\n\n')
             return 'BUY'
         elif self.roc_prev > 0 and current_roc < 0:
-            print(f'\n\nROC SELL: {current_roc}\n\n')
+            #print(f'\n\nROC SELL: {current_roc}\n\n')
             return 'SELL'
         else:
             return None
@@ -192,11 +192,11 @@ class Check:
             self.vwap_prev = "above" if new_price > vwap else "below"
             return None
         if new_price > vwap and self.vwap_prev == "below":
-            print(f'\n\nVWAP BUY: {new_price}\n\n')
+            #print(f'\n\nVWAP BUY: {new_price}\n\n')
             self.vwap_prev = "above"
             return 'BUY'
         elif new_price < vwap and self.vwap_prev == "above":
-            print(f'\n\nVWAP SELL: {new_price}\n\n')
+            #print(f'\n\nVWAP SELL: {new_price}\n\n')
             self.vwap_prev = "below"
             return 'SELL'
         else:
@@ -206,10 +206,10 @@ class Check:
     def bb_check(self, bb, new_price):
         #print(f'BB: {bb}')
         if new_price > bb[0]:
-            print(f'\n\nBB BUY: {bb}\n\n')
+            #print(f'\n\nBB BUY: {bb}\n\n')
             return 'BUY'
         elif new_price < bb[2]:
-            print(f'\n\nBB SELL: {bb}\n\n')
+            #print(f'\n\nBB SELL: {bb}\n\n')
             return 'SELL'
         else: return None
 
@@ -228,10 +228,10 @@ class Check:
     def macd_check(self, macd):
         #print(f'MACD: {macd[2][-2]}, {macd[2][-1]}')
         if macd[2][-2] < 0 and macd[2][-1] > 0:
-            print(f'\n\nMACD BUY: {macd[2][-2]}, {macd[2][-1]}\n\n')
+            #print(f'\n\nMACD BUY: {macd[2][-2]}, {macd[2][-1]}\n\n')
             return 'BUY'
         elif macd[2][-2] > 0 and macd[2][-1] < 0:
-            print(f'\n\nMACD SELL: {macd[2][-2]}, {macd[2][-1]}\n\n')
+            #print(f'\n\nMACD SELL: {macd[2][-2]}, {macd[2][-1]}\n\n')
             return 'SELL'
         else:
             return None
@@ -259,10 +259,10 @@ class Check:
     def rsi_check(self, rsi):
         #print(f'RSI: {rsi}')
         if rsi >= 70:
-            print(f'RSI SELL: {rsi}')
+            #print(f'RSI SELL: {rsi}')
             return "SELL"
         elif rsi <= 30:
-            print(f'RSI BUY: {rsi}')
+            #print(f'RSI BUY: {rsi}')
             return "BUY"
         else:
             return None
