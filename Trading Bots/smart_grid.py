@@ -7,8 +7,8 @@ import json
 Sample input:
 
 bots_dict = {
-    'smart_grid_1' : ['BTCUSDT', 50, 50].
-    'smart_grid_2' : ['ETHUSDT', 25, 50]
+    'smartg_1' : ['BTCUSDT', 50, 50].
+    'smartg_2' : ['ETHUSDT', 25, 50]
     }
 
 '''
