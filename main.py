@@ -4,11 +4,16 @@ import numpy as np
 from binance.client import Client
 import threading
 from decimal import Decimal, ROUND_DOWN
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from .env file
+load_dotenv()
 
-# Binance API credentials
-api_key = 'YOUR API KEY'
-api_secret = 'YOU API SECRET'
+# Retrieve the API key and secret
+api_key = os.getenv('API_KEY')
+api_secret = os.getenv('API_SECRET')
+
 
 # Initialize Binance client
 client = Client(api_key, api_secret, tld='us')
